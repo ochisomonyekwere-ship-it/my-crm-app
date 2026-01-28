@@ -7,17 +7,17 @@ import {
   CircleCheck, AlertCircle, Bookmark, Star, Command, Check, 
   Coffee, Edit3, Sparkles, Pencil
 } from 'lucide-react';
-import { GoogleGenAI } from "@google/genai";
+
 import { AppStep, Notification } from './types';
 
-// Initialize the Gemini AI client
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Initialize the Gemini AI client using the mandatory environment variable
+
 
 // --- Decorative Components ---
 
 /**
  * Custom Slack Logo Illustration (SVG)
- * Full-color version matching the standard Slack branding as seen in the attached image.
+ * Full-color version matching the standard Slack branding as seen in the original designs.
  */
 const SlackLogo: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) => (
   <svg 
@@ -34,10 +34,6 @@ const SlackLogo: React.FC<{ className?: string }> = ({ className = "w-5 h-5" }) 
   </svg>
 );
 
-/**
- * Custom Sephora Flame Illustration (SVG)
- * Provides a clean, "graphic illustration" version of the Sephora brand mark.
- */
 const SephoraFlame: React.FC<{ className?: string }> = ({ className = "w-12 h-12" }) => (
   <svg 
     viewBox="0 0 40 128" 
@@ -53,10 +49,6 @@ const SephoraFlame: React.FC<{ className?: string }> = ({ className = "w-12 h-12
   </svg>
 );
 
-/**
- * Combined Icon for Activity Monitor
- * Features the Sephora Flame with a glitter/magic wand indicator
- */
 const ActivityMonitorIcon: React.FC<{ className?: string; iconSize?: string; sparkleSize?: string }> = ({ 
   className = "w-14 h-14 bg-slate-900 rounded-2xl", 
   iconSize = "w-7 h-7",
@@ -70,10 +62,6 @@ const ActivityMonitorIcon: React.FC<{ className?: string; iconSize?: string; spa
   </div>
 );
 
-/**
- * Custom LVMH Logo Illustration (SVG)
- * Serif version matching the brand's aesthetic.
- */
 const LVMHLogo: React.FC<{ className?: string }> = ({ className = "w-8 h-8" }) => (
   <svg 
     viewBox="0 0 100 100" 
@@ -319,7 +307,7 @@ export default function App() {
       avatar: '',
       channel: 'System',
       title: 'Changes made to Sephora deal',
-      snippet: "There have been changes to the Sephora Contract Document. I've drafted a new contract...",
+      snippet: "There have been changes to the Sephora Contract Document. I've drafted a response to Sephora's team based on the updates...",
       time: '2m ago',
       type: 'urgent' 
     },
@@ -458,7 +446,6 @@ export default function App() {
                  <div className="p-2 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 cursor-pointer transition-colors">
                     <Settings className="w-4 h-4 text-slate-500" />
                  </div>
-                 {/* Status circle icon remains removed from all steps next to settings */}
                </div>
              </div>
           </header>
@@ -486,12 +473,8 @@ export default function App() {
                         <div className="flex gap-5">
                           <ActivityMonitorIcon />
                           <div>
-                            <h1 className="text-2xl font-black text-slate-900 tracking-tight">
-                              {(step === 1 || step === 2) ? "Changes made to Contract with Sephora" : "Activity Monitor"}
-                            </h1>
-                            <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mt-0.5">
-                              {(step === 1 || step === 2) ? "GENERATED 2 MINUTES AGO" : "AUTOMATED INTELLIGENCE DRAFT"}
-                            </p>
+                            <h1 className="text-2xl font-black text-slate-900 tracking-tight">Activity Monitor</h1>
+                            <p className="text-sm font-bold text-slate-400 uppercase tracking-widest mt-0.5">AUTOMATED INTELLIGENCE DRAFT</p>
                           </div>
                         </div>
                         {step === 1 ? (
@@ -522,10 +505,7 @@ export default function App() {
                     {/* Main Content Body */}
                     <div className="p-8 space-y-10">
                       <div className="space-y-4">
-                        {/* Heading removed for Step 1 and 2 as per request */}
-                        {!(step === 1 || step === 2) && (
-                          <h2 className="text-3xl font-black text-slate-900 leading-[1.1] tracking-tight">Contract changes ready for review</h2>
-                        )}
+                        <h2 className="text-3xl font-black text-slate-900 leading-[1.1] tracking-tight">Contract changes ready for review</h2>
                         <div className="space-y-6 text-[17px] text-slate-600 leading-relaxed font-medium">
                           <p>Hi there, Samantha! There's been changes to the latest Contract Agreement with <span className="text-slate-900 font-bold underline decoration-slate-200 underline-offset-4">Sephora</span>.</p>
                           <p>I've drafted a new contract highlighting the changes from Slack conversations, Email threads and Google Drive comments. Below is a side-by-side view of the revised document.</p>
@@ -543,7 +523,7 @@ export default function App() {
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
                           <h3 className="text-[12px] font-black text-slate-900 uppercase tracking-widest">Document Comparison</h3>
-                          {/* Label removed for Steps 1, 2, and 3 as requested */}
+                          <span className="text-[11px] font-bold text-slate-400">v2 vs v3 (Latest)</span>
                         </div>
                         <div className="grid grid-cols-2 gap-8">
                           {/* Previous Version */}
@@ -736,7 +716,7 @@ export default function App() {
                   <div className="space-y-6 text-slate-700 text-base leading-relaxed h-[240px] overflow-y-auto pr-4 font-medium">
                     <p>Dear Matthew,</p>
                     <p>Thank you for sending over Sephora's propositions. We've reviewed the proposals and adapted the terms to better align with our volume projections.</p>
-                    <p>I attached the revised document reflecting these points. Please let us know if this aligns with your expectations so we can proceed.</p>
+                    <p>I attached the revised document (v3) reflecting these points. Please let us know if this aligns with your expectations so we can proceed.</p>
                     <p>Best regards,<br /><span className="text-slate-900 font-black">Samantha</span></p>
                     
                     <div className="p-5 border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50 flex items-center gap-5 hover:border-slate-400 transition-all cursor-pointer">
